@@ -14,13 +14,25 @@ class MainActivity : AppCompatActivity() {
 
         rollButton.setOnClickListener {
             rollDice()
+            flipCoin()
         }
 
     }
 
-    fun rollDice() {
-        val dice = Dice(6)
-        val resultTextView = findViewById<TextView>(R.id.textView)
-        resultTextView.text = dice.roll().toString()
+    private fun rollDice() {
+        val dice1 = Dice(6)
+        val dice2 = Dice(20)
+
+        val dice1ResultTextView = findViewById<TextView>(R.id.dice1)
+        dice1ResultTextView.text = dice1.roll().toString()
+
+        val dice2ResultTextView = findViewById<TextView>(R.id.dice2)
+        dice2ResultTextView.text = dice2.roll().toString()
+    }
+
+    private fun flipCoin() {
+        val coin = Coin()
+        val coinSideTextView = findViewById<TextView>(R.id.CoinSideTextView)
+        coinSideTextView.text = coin.flip()
     }
 }
