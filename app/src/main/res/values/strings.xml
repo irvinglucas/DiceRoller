@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Dice Roller</string>
     <string name="roll">Roll</string>
+    <string name="dice_1">DICE 1</string>
+    <string name="dice_2">DICE 2</string>
+    <string name="coin">COIN</string>
+    <string name="dice_rolled_content_description">Image view that represents the dice rolled</string>
 </resources>

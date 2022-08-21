@@ -2,7 +2,7 @@ package com.example.diceroller
 
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -14,25 +14,23 @@ class MainActivity : AppCompatActivity() {
 
         rollButton.setOnClickListener {
             rollDice()
-            flipCoin()
+            //flipCoin()
         }
 
     }
 
     private fun rollDice() {
-        val dice1 = Dice(6)
-        val dice2 = Dice(20)
+        val dice = Dice(6)
+        val diceImage = findViewById<ImageView>(R.id.diceImageView)
 
-        val dice1ResultTextView = findViewById<TextView>(R.id.dice1)
-        dice1ResultTextView.text = dice1.roll().toString()
-
-        val dice2ResultTextView = findViewById<TextView>(R.id.dice2)
-        dice2ResultTextView.text = dice2.roll().toString()
+        when (dice.roll()) {
+            1 -> diceImage.setImageResource(R.drawable.dice_1)
+            2 -> diceImage.setImageResource(R.drawable.dice_2)
+            3 -> diceImage.setImageResource(R.drawable.dice_3)
+            4 -> diceImage.setImageResource(R.drawable.dice_4)
+            5 -> diceImage.setImageResource(R.drawable.dice_5)
+            6 -> diceImage.setImageResource(R.drawable.dice_6)
+        }
     }
 
-    private fun flipCoin() {
-        val coin = Coin()
-        val coinSideTextView = findViewById<TextView>(R.id.CoinSideTextView)
-        coinSideTextView.text = coin.flip()
-    }
 }
