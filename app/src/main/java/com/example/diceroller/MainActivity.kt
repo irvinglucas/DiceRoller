@@ -5,6 +5,9 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 
+// since we have only 6 drawables of a dice, I decided to fix the value here
+const val DICE_SIDES = 6
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -12,25 +15,34 @@ class MainActivity : AppCompatActivity() {
 
         val rollButton = findViewById<Button>(R.id.button)
 
+        // starts the activity with a random dice side
+        rollDice()
+
         rollButton.setOnClickListener {
             rollDice()
-            //flipCoin()
         }
 
     }
 
     private fun rollDice() {
-        val dice = Dice(6)
+        val dice = Dice(DICE_SIDES)
         val diceImage = findViewById<ImageView>(R.id.diceImageView)
 
-        when (dice.roll()) {
-            1 -> diceImage.setImageResource(R.drawable.dice_1)
-            2 -> diceImage.setImageResource(R.drawable.dice_2)
-            3 -> diceImage.setImageResource(R.drawable.dice_3)
-            4 -> diceImage.setImageResource(R.drawable.dice_4)
-            5 -> diceImage.setImageResource(R.drawable.dice_5)
-            6 -> diceImage.setImageResource(R.drawable.dice_6)
+        val diceRoll = dice.roll()
+
+        val diceSide = when (diceRoll) {
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
         }
+
+        // update the right image after rolling the dice
+        diceImage.setImageResource(diceSide)
+        // set the content description for the TalkBack utility
+        diceImage.contentDescription = diceRoll.toString()
     }
 
 }
